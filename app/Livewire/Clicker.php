@@ -11,11 +11,11 @@ class Clicker extends Component
 {
     public $count = 1;
     // #[Validate('required|min:6')]
-    public $name;
+    public $name = '';
     // #[Validate('required|email|unique:users,email')]
-    public $email ;
+    public $email = '' ;
     // #[Validate('required|min:4')]
-    public $password ;
+    public $password = '' ;
 
     // Define validation rules
     protected $rules = [
@@ -33,6 +33,7 @@ class Clicker extends Component
 
 
     public function submitHandler(){
+        // dd($this->all());
         $this->validate();
         User::create([
             'name' =>$this->name,
@@ -42,6 +43,7 @@ class Clicker extends Component
             // Flash message for success
         session()->flash('message', 'Registration successful!');
         $this->resetForm();
+
         // $this->email="Testemail" . rand(1000, 9999) . "@gmail.com";
         // $this->name="Test name".rand(1000, 9999);
     }
