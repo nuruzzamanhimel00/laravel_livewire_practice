@@ -21,10 +21,19 @@
     </p>
     <button wire:click="userCreateHandler">User Create</button>
     <h1> User list</h1>
+    @if (session()->has('message'))
+        <div class="alert alert-success">
+            {{ session('message') }}
+        </div>
+    @endif
+
     <form wire:submit="submitHandler">
         <input type="text" wire:model="name" />
+        @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
         <input type="email" wire:model="email" />
+        @error('email') <span class="text-red-500">{{ $message }}</span> @enderror
         <input type="password" wire:model="password" />
+        @error('password') <span class="text-red-500">{{ $message }}</span> @enderror
         <button type="submit">Save</button>
     </form>
     <ul>

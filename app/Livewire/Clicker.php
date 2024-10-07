@@ -5,29 +5,51 @@ namespace App\Livewire;
 use App\Models\User;
 use Livewire\Component;
 use Illuminate\Support\Facades\Hash;
+use Livewire\Attributes\Validate;
 
 class Clicker extends Component
 {
     public $count = 1;
+    // #[Validate('required|min:6')]
     public $name;
+    // #[Validate('required|email|unique:users,email')]
     public $email ;
+    // #[Validate('required|min:4')]
     public $password ;
+
+    // Define validation rules
+    protected $rules = [
+        'name' => 'required|min:6',
+        'email' => 'required|email|unique:users,email',
+        'password' => 'required|min:4',
+    ];
 
     public function __construct()
     {
-        $this->name="Test name".rand(1000, 9999);
-        $this->email="Testemail" . rand(1000, 9999) . "@gmail.com";
-        $this->password="password";
+        // $this->name="Test name".rand(1000, 9999);
+        // $this->email="Testemail" . rand(1000, 9999) . "@gmail.com";
+        // $this->password="password";
     }
 
+
     public function submitHandler(){
+        $this->validate();
         User::create([
             'name' =>$this->name,
             'email' => $this->email,
             'password' => Hash::make(    $this->password),
         ]);
-        $this->email="Testemail" . rand(1000, 9999) . "@gmail.com";
-        $this->name="Test name".rand(1000, 9999);
+            // Flash message for success
+        session()->flash('message', 'Registration successful!');
+        $this->resetForm();
+        // $this->email="Testemail" . rand(1000, 9999) . "@gmail.com";
+        // $this->name="Test name".rand(1000, 9999);
+    }
+
+    public function resetForm(){
+
+    // Reset the form fields after successful submission
+    $this->reset(['name', 'email', 'password']);
     }
 
     public function incrementHandler()
