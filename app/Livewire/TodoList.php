@@ -18,6 +18,7 @@ class TodoList extends Component
     public $editIds = [];
 
     public $sendingTodoID;
+    #[Validate('required|min:5')]
     public $sendingTodoName;
 
 
@@ -45,6 +46,8 @@ class TodoList extends Component
     }
 
     public function updateEditHandler(){
+        //validate
+        $this->validateOnly('sendingTodoName');
         $todo = Todo::find($this->sendingTodoID);
         $todo->name = $this->sendingTodoName;
         $todo->save();
