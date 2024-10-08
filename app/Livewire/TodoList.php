@@ -4,14 +4,16 @@ namespace App\Livewire;
 
 use App\Models\Todo;
 use Livewire\Component;
+use Livewire\WithPagination;
 use Livewire\Attributes\Validate;
 
 class TodoList extends Component
 {
+    use WithPagination;
     #[Validate('required|min:5')]
     public $name;
 
-    public $sarch;
+    public $search;
 
     public function toDoCreate(){
         //validate
@@ -25,9 +27,32 @@ class TodoList extends Component
         session()->flash('message', 'To do created successfully!');
         $this->reset(['name']);
     }
+
+    public function deleteTodo(Todo $todo): void{
+
+        $todo->delete();
+        session()->flash('message', 'To do Deleted successfully!');
+    }
+    public function toggleComplete(Todo $todo){
+        $todo->completed = !$todo->completed;
+        $todo->save();
+        session()->flash('message', 'To do Completed successfully!');
+
+    }
     public function render()
     {
-        $todos = Todo::latest()->paginate(10);
-        return view('livewire.todo-list',compact('todos'));
+        $search = $this->search;
+
+        $todos = Todo::query()
+        ->when(!empty($search), function ($query) use ($search) {
+            return $query->where('name', 'like', '%' . $search . '%');
+        })
+
+        ->latest()
+        ->paginate(10);
+
+
+
+        return view('livewire.todos', compact('todos'));
     }
 }
