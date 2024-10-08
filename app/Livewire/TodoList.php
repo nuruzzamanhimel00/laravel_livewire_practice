@@ -27,6 +27,7 @@ class TodoList extends Component
     }
     public function render()
     {
-        return view('livewire.todo-list');
+        $todos = Todo::latest()->paginate(10);
+        return view('livewire.todo-list',compact('todos'));
     }
 }
