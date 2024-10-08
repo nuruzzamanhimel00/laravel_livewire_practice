@@ -8,7 +8,11 @@
 
     </head>
     <body class="antialiased">
-        @livewire('clicker')
+        {{-- PART:1 --}}
+        {{-- @livewire('clicker') --}}
         {{-- <livewire:clicker /> --}}
+
+        {{-- Part:2  --}}
+        @livewire('clicker-one')
     </body>
 </html>
