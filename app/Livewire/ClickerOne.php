@@ -4,11 +4,13 @@ namespace App\Livewire;
 
 use App\Models\User;
 use Livewire\Component;
+use Livewire\WithPagination;
 use App\Livewire\Forms\UserForm;
 use Illuminate\Support\Facades\Hash;
 
 class ClickerOne extends Component
 {
+    use WithPagination;
     public UserForm $form;
     // Define validation rules
 
@@ -37,7 +39,7 @@ class ClickerOne extends Component
     public function render()
     {
         $title = "This is liveware page!!";
-        $users = User::get();
+        $users = User::paginate(2);
         return view('livewire.clicker-one',compact('users','title'));
     }
 }
