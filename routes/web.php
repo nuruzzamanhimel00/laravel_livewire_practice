@@ -17,3 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// todo list CURD
+Route::get('/todo', function () {
+    return view('todo');
+});
+
