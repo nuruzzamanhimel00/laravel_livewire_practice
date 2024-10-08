@@ -2,8 +2,10 @@
 
 namespace App\Livewire\Forms;
 
-use Livewire\Attributes\Validate;
 use Livewire\Form;
+use App\Models\User;
+use Livewire\Attributes\Validate;
+use Illuminate\Support\Facades\Hash;
 
 
 class UserForm extends Form
@@ -14,4 +16,16 @@ class UserForm extends Form
     public $email = '' ;
     #[Validate('required|min:4')]
     public $password = '' ;
+
+    public function store()
+    {
+        $this->validate();
+
+        User::create([
+            'name' =>$this->name,
+            'email' => $this->email,
+            'password' => Hash::make($this->password),
+        ]);
+        $this->reset(['name', 'email', 'password']);
+    }
 }
