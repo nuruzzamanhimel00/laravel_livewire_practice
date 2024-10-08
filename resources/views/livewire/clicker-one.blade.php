@@ -25,6 +25,6 @@
         <!-- Pagination Links -->
         <div class="d-flex justify-content-center">
 
-            {{ $users->links("vendor.livewire.test-bootstrap") }} <!-- No need to pass 'vendor.pagination.bootstrap-4' if using Livewire -->
+            {{ $users->links("vendor.livewire.test-bootstrap",['scrollTo' => false]) }} <!-- No need to pass 'vendor.pagination.bootstrap-4' if using Livewire -->
         </div>
 </div>

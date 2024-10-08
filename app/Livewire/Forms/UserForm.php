@@ -10,12 +10,18 @@ use Illuminate\Support\Facades\Hash;
 
 class UserForm extends Form
 {
-    #[Validate('required|min:6')]
+    // #[Validate('required|min:6')]
     public $name = '';
-    #[Validate('required|email|unique:users,email')]
+    // #[Validate('required|email|unique:users,email')]
     public $email = '' ;
-    #[Validate('required|min:4')]
+    // #[Validate('required|min:4')]
     public $password = '' ;
+
+    protected $rules = [
+        'name' => 'required|min:6',
+        'email' => 'required|email|unique:users,email',
+        'password' => 'required|min:4',
+    ];
 
     public function store()
     {

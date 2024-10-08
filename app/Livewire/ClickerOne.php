@@ -27,6 +27,9 @@ class ClickerOne extends Component
         // ############### PART 02 ########################
         $this->form->store();
 
+        //Resetting the page
+        // $this->resetPage();
+        $this->resetPage(pageName: 'user-page');
             // Flash message for success
         session()->flash('message', 'Registration successful!');
         // $this->resetForm();
@@ -39,7 +42,8 @@ class ClickerOne extends Component
     public function render()
     {
         $title = "This is liveware page!!";
-        $users = User::paginate(2);
+        $users = User::paginate(20,pageName: 'user-page');
+
         return view('livewire.clicker-one',compact('users','title'));
     }
 }
