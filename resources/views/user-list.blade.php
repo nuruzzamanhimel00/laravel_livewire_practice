@@ -22,7 +22,7 @@
                     ]) --}}
 
                     {{-- <livewire:user-list lazy /> --}}
-                    <livewire:user-list  />
+                    <livewire:user-list search="Miss" />
                 </div>
 
             </div>

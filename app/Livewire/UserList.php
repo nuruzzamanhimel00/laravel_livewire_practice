@@ -15,6 +15,11 @@ class UserList extends Component
     public $count;
 
     public $search;
+
+    //it is a __construct() of component
+    public function mount($search){
+        $this->search = $search;
+    }
     public function hydrate()
     {
         // Runs at the beginning of every "subsequent" request...
