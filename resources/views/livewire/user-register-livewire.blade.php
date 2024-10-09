@@ -28,18 +28,20 @@
                               <input type="password" wire:model="password" class="form-control" id="exampleInputPassword1">
                               @error('password') <span class="error text-danger">{{ $message }}</span> @enderror
                             </div>
-                            {{-- <div class="form-group">
-                                <label for="customFile">Image</label>
-                                <input type="file" class="custom-file-input" id="customFile">
 
-                              </div> --}}
                               <div class="form-group">
                                   <label for="exampleInputPassword1">Image</label>
                                 <div class="custom-file mb-2">
-                                    <input type="file" class="custom-file-input" id="customFile" wire:model="image">
+                                    <input type="file" class="custom-file-input" id="customFile" wire:model="image" accept="image/*">
                                     <label class="custom-file-label" for="customFile">Choose file</label>
                                     @error('image') <span class="error text-danger">{{ $message }}</span> @enderror
                                 </div>
+
+                                <div wire:loading wire:target="image">Uploading...</div>
+                                <!--- Tempory Image Preview ---->
+                                @if ($image)
+                                    <img src="{{ $image->temporaryUrl() }}" width="50" height="50">
+                                @endif
                               </div>
                             <button type="submit" class="btn btn-primary">Create</button>
                           </form>
