@@ -43,7 +43,10 @@
                                     <img src="{{ $image->temporaryUrl() }}" width="50" height="50">
                                 @endif
                               </div>
-                            <button type="submit" class="btn btn-primary">Create</button>
+                            <button type="submit" class="btn btn-primary"
+                            wire:loading.attr="disabled"
+                            >Create</button>
+                            <div wire:loading  wire:target="registerUserHandler"class="text-success">Loading...</div>
                           </form>
                     </div>
                 </div>
