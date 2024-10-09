@@ -30,3 +30,7 @@ Route::get('/user-register', function () {
 Route::get('/user-register-list', function () {
     return view('user-register-list');
 });
+
+Route::get('/user-list', function () {
+    return view('user-list');
+});

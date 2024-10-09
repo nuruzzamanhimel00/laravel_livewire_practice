@@ -6,7 +6,7 @@
                     <div class="card-header">
                         <h1> User List </h1>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body" wire:poll.visible.5s >
                         <table class="table">
                             <thead>
                               <tr>
