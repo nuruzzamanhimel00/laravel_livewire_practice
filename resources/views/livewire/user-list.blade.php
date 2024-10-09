@@ -3,7 +3,22 @@
         <div class="row">
             <div class="col-md-12">
 
+                <div class="card">
+                    <div class="card-body">
+                        <form>
+                            <div class="form-group">
+                              <label for="exampleInputEmail1">Search</label>
+                              <input type="text" wire:model="search" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                              {{-- <input type="text" wire:model.live="search" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"> --}}
+                              {{-- <input type="text" wire:model.live.debounce.200ms="search" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"> --}}
+                              {{-- <input type="text" wire:model.live.throttle.200ms="search" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"> --}}
 
+                            </div>
+
+                            <button type="button" wire:click.prevent="searchHandler" class="btn btn-primary">Search</button>
+                          </form>
+                    </div>
+                </div>
                 <div class="card">
                     <div class="card-header">
                         <h1> User List
