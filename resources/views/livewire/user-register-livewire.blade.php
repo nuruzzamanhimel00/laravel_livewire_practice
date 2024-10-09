@@ -43,9 +43,12 @@
                                     <img src="{{ $image->temporaryUrl() }}" width="50" height="50">
                                 @endif
                               </div>
+
                             <button type="submit" class="btn btn-primary"
                             wire:loading.attr="disabled"
-                            >Create</button>
+                        
+                            >Create dd</button>
+
                             <div wire:loading  wire:target="registerUserHandler"class="text-success">Loading...</div>
                           </form>
 
@@ -54,6 +57,7 @@
                           >Reload Userlist</button> --}}
                           <!---Alpain Using Livewire -->
                           <button type="button" class="btn btn-success"
+                              wire:confirm.prompt="Are you sure?\n\nType DELETE to confirm|DELETE"
                           @click="$dispatch('refresh-user-list')"
                           >Reload Userlist</button>
                     </div>
