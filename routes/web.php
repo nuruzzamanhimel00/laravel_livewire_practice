@@ -22,3 +22,7 @@ Route::get('/todo', function () {
     return view('todo');
 });
 
+// todo list CURD
+Route::get('/user-register', function () {
+    return view('user-register');
+});
