@@ -8,19 +8,23 @@
            <!-- Bootstrap CSS -->
            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
                <!-- Livewire Styles -->
+               @stack('style')
         @livewireStyles
-        @stack('style')
+
     </head>
     <body class="antialiased">
 
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8 my-5">
-                    @livewire('user-list')
+                    {{-- @livewire('user-list',[
+                        'lazy'=> true
+                    ]) --}}
 
                     {{-- <livewire:user-list lazy /> --}}
+                    <livewire:user-list  />
                 </div>
-            
+
             </div>
         </div>
 

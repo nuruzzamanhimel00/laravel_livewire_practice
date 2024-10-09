@@ -6,7 +6,9 @@ use App\Models\User;
 use Livewire\Component;
 use Livewire\Attributes\On;
 use Livewire\WithPagination;
+use Livewire\Attributes\Lazy;
 
+#[Lazy]
 class UserList extends Component
 {
     use WithPagination;
@@ -17,19 +19,25 @@ class UserList extends Component
         // This doesn't run on the initial request ("mount" does)...
         $this->count = rand(1000,9999);
     }
- 
+
     public function dehydrate()
     {
         // Runs at the end of every single request...
         $this->count = rand(1000,9999);
     }
 
-    
-    #[On('refresh-user-list')] 
+
+    #[On('refresh-user-list')]
     public function refreshUserList($user = null){
         $this->count = rand(1000,9999);
         // dd($user);
     }
+
+    // public function placeholder()
+    // {
+    //     return view('livewire.placeholder-table');
+    // }
+
     public function render()
     {
         $users = User::latest()->paginate(5);

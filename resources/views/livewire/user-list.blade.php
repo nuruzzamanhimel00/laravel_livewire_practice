@@ -2,9 +2,11 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
+
+
                 <div class="card">
                     <div class="card-header">
-                        <h1> User List 
+                        <h1> User List
 
                             <span class="badge badge-primary">{{$userCount}}</span>
                         </h1>
@@ -16,7 +18,7 @@
                                 <th scope="col">#</th>
                                 <th scope="col">name</th>
                                 <th scope="col">email</th>
-                            
+
                               </tr>
                             </thead>
                             <tbody>
@@ -26,7 +28,7 @@
                                     <th scope="row">{{$loop->iteration}}</th>
                                     <td>{{$user->name}}</td>
                                     <td>{{$user->email}}</td>
-                                
+
                                 </tr>
                                 @endforeach
                               @endif
@@ -43,4 +45,7 @@
             </div>
         </div>
     </div>
+
+
+
 </div>
