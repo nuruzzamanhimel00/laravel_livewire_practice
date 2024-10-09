@@ -1,7 +1,7 @@
 <div>
     <div class="container">
         <div class="row justify-content-center my-5">
-            <div class="col-md-8">
+            <div class="{{$grid ? $grid : 'col-md-8'}} ">
                 <div class="card">
                     <div class="card-header">
                         <h1> User Register </h1>
@@ -48,10 +48,18 @@
                             >Create</button>
                             <div wire:loading  wire:target="registerUserHandler"class="text-success">Loading...</div>
                           </form>
+
+                          {{-- <button type="button" class="btn btn-success"
+                          wire:click="reloadUserList"
+                          >Reload Userlist</button> --}}
+                          <!---Alpain Using Livewire -->
+                          <button type="button" class="btn btn-success"
+                          @click="$dispatch('refresh-user-list')"
+                          >Reload Userlist</button>
                     </div>
                 </div>
             </div>
-            <div class="col-md-8">
+            <div class="{{$grid ? $grid : 'col-md-8'}}">
                 <table class="table">
                     <thead>
                       <tr>

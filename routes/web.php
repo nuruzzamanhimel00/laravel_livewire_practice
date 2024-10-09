@@ -22,7 +22,11 @@ Route::get('/todo', function () {
     return view('todo');
 });
 
-// todo list CURD
+// user crete
 Route::get('/user-register', function () {
     return view('user-register');
+});
+// user create and llist
+Route::get('/user-register-list', function () {
+    return view('user-register-list');
 });

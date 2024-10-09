@@ -21,6 +21,15 @@ class UserRegisterLivewire extends Component
     #[Validate('nullable|sometimes|mimes:jpeg,jpg,png,gif|max:2048')]
     public $image;
 
+    public $grid;
+
+    // // Constructor-like method to handle passed parameters
+    public function mount($grid){
+
+        $this->grid = $grid;
+    }
+    
+
     public function registerUserHandler(){
         $this->validate();
         $data = [];
@@ -30,10 +39,16 @@ class UserRegisterLivewire extends Component
         if(!is_null($this->image)){
             $data['image']  = $this->image->store('photos','public');
         }
-        User::create($data);
+        $user = User::create($data);
         // Flash message for success
         session()->flash('message', 'Registration successful!');
-        $this->reset();
+        $this->reset(['name','email','password','image']);
+        //dispatch event for refresh user list of another component
+        $this->dispatch('refresh-user-list',$user); 
+    }
+
+    public function reloadUserList(){
+        $this->dispatch('refresh-user-list'); 
     }
     public function render()
     {
