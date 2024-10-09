@@ -33,6 +33,7 @@ class UserList extends Component
     public function render()
     {
         $users = User::latest()->paginate(5);
-        return view('livewire.user-list',compact('users'));
+        $userCount = User::count();
+        return view('livewire.user-list',compact('users','userCount'));
     }
 }
