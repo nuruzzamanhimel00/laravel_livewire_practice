@@ -1,5 +1,7 @@
 <?php
 
+use App\Livewire\HomePage;
+use App\Livewire\UserPage;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,3 +36,7 @@ Route::get('/user-register-list', function () {
 Route::get('/user-list', function () {
     return view('user-list');
 });
+
+//full page component
+Route::get('/home', HomePage::class);
+Route::get('/users/{id?}', UserPage::class);

@@ -7,6 +7,7 @@ use Livewire\Component;
 use Livewire\Attributes\On;
 use Livewire\WithPagination;
 use Livewire\Attributes\Lazy;
+use Livewire\Attributes\Computed;
 
 #[Lazy]
 class UserList extends Component
@@ -15,6 +16,7 @@ class UserList extends Component
     public $count;
 
     public $search;
+    public $test;
 
     //it is a __construct() of component
     public function mount($search){
@@ -50,7 +52,8 @@ class UserList extends Component
         $this->resetPage();
     }
 
-    public function render()
+    #[Computed]
+    public function users()
     {
         $users = User::query()
         ->when(!empty($this->search), function ($query) {
@@ -58,11 +61,38 @@ class UserList extends Component
         })
 
         ->paginate(10);
+        return $users;
+    }
+
+    public function render()
+    {
+        // $users = User::query()
+        // ->when(!empty($this->search), function ($query) {
+        //     return $query->where('name', 'like', '%' . $this->search . '%');
+        // })
+
+        // ->paginate(10);
         $userCount = User::query()
         ->when(!empty($this->search), function ($query) {
             return $query->where('name', 'like', '%' . $this->search . '%');
         })
         ->count();
-        return view('livewire.user-list',compact('users','userCount'));
+        return view('livewire.user-list',compact('userCount'));
     }
+
+    // public function render()
+    // {
+    //     $users = User::query()
+    //     ->when(!empty($this->search), function ($query) {
+    //         return $query->where('name', 'like', '%' . $this->search . '%');
+    //     })
+
+    //     ->paginate(10);
+    //     $userCount = User::query()
+    //     ->when(!empty($this->search), function ($query) {
+    //         return $query->where('name', 'like', '%' . $this->search . '%');
+    //     })
+    //     ->count();
+    //     return view('livewire.user-list',compact('users','userCount'));
+    // }
 }

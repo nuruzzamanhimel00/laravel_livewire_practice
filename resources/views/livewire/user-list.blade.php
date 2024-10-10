@@ -8,9 +8,9 @@
                         <form>
                             <div class="form-group">
                               <label for="exampleInputEmail1">Search</label>
-                              <input type="text" wire:model="search" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                              {{-- <input type="text" wire:model="search" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"> --}}
                               {{-- <input type="text" wire:model.live="search" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"> --}}
-                              {{-- <input type="text" wire:model.live.debounce.200ms="search" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"> --}}
+                              <input type="text" wire:model.live.debounce.200ms="search" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                               {{-- <input type="text" wire:model.live.throttle.200ms="search" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"> --}}
 
                             </div>
@@ -26,7 +26,7 @@
                             <span class="badge badge-primary">{{$userCount}}</span>
                         </h1>
                     </div>
-                    <div class="card-body" wire:poll.visible.5s >
+                    <div class="card-body" wire:poll.visible.20s >
                         <table class="table">
                             <thead>
                               <tr>
@@ -37,8 +37,8 @@
                               </tr>
                             </thead>
                             <tbody>
-                                @if($users->count() >0)
-                                @foreach($users as $user)
+                                @if($this->users->count() >0)
+                                @foreach($this->users as $user)
                                 <tr>
                                     <th scope="row">{{$loop->iteration}}</th>
                                     <td>{{$user->name}}</td>
@@ -53,7 +53,7 @@
                           <!-- Pagination Links -->
                         <div class="d-flex justify-content-center">
 
-                            {{ $users->links("vendor.livewire.test-bootstrap",['scrollTo' => false]) }} <!-- No need to pass 'vendor.pagination.bootstrap-4' if using Livewire -->
+                            {{ $this->users->links("vendor.livewire.test-bootstrap",['scrollTo' => false]) }} <!-- No need to pass 'vendor.pagination.bootstrap-4' if using Livewire -->
                         </div>
                     </div>
                 </div>
